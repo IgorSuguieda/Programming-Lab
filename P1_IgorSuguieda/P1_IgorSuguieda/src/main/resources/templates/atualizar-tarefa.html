@@ -1,0 +1,19 @@
+<form action="#"
+      th:action="@{/atualizar/{id}(id=${tarefa.id})}"
+      th:object="${tarefa}"
+      method="post">
+    <label for="titulo">Titulo: </label>
+    <input type="text" th:field="*{titulo}" id="titulo">
+    <span th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></span>
+    <br/>
+    <label for="descricao">Descricao:</label>
+    <input type="text" th:field="*{descricao}" id="descricao">
+    <br/>
+    <label for="status">Status:</label>
+    <input type="checkbox" th:field="*{status}" id="status">
+    <br/>
+    <label for="prazo">Prazo: </label>
+    <input type="date" th:field="*{prazo}" id="prazo"/>
+    <br/>
+    <input type="submit" value="Atualizar Tarefa">
+</form>

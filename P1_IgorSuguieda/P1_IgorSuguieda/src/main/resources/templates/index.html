@@ -1,0 +1,46 @@
+<style>
+    td, th {
+        padding: 0px 15px; /* 10px em cima/baixo, 20px à esquerda/direita */
+    }
+
+    .mark-check::before {
+        content: "✔"; /* Símbolo de check */
+        color: green; /* Cor do check */
+        font-size: 16px; /* Tamanho do check */
+        margin-right: 5px; /* Espaçamento do check para o texto */
+    }
+
+</style>
+<div th:switch="${lista_tarefas}">
+    <h2 th:case="null">Ainda não há tarefas listadas!</h2>
+    <div th:case="*">
+        <h2>Tarefas</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Descricao</th>
+                <th>Prazo</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="tarefa : ${lista_tarefas}">
+                <td th:text="${tarefa.titulo}"></td>
+                <td th:text="${tarefa.descricao}"></td>
+                <td th:text="${#dates.format(tarefa.prazo, 'dd/MM/yyyy')}"></td>
+                <td th:b#bools="${tarefa.status}" class="checked">
+                    <i class="mark-check" th:if="${tarefa.status}"></i>
+                </td>
+                <td><a th:href="@{/editar/{id} (id=${tarefa.id})}" >Editar Tarefa</a> </td>
+                <td><a th:href="@{/remover/{id} (id=${tarefa.id})}" >Remover Tarefa</a> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/nova-tarefa">Adicionar uma nova tarefa</a></p>
+
+    <p><a href="/filtro">Adicionar Filtros </a></p>
+
+    <p><a href="/remover-filtro" > Remover Filtros </a> </p>
+</div>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicione um filtro</title>
+</head>
+<body>
+<h1>Escolha seus filtros</h1>
+
+<form action="#" th:action="@{/criar-filtro}" th:object="${filtro}" method="post">
+
+    <label for="titulo">Filtrar por Titulo da Tarefa</label>
+    <input type="hidden" value="false">
+    <input type="checkbox" th:field="*{tituloBool}" id="tituloBool" value="true">
+    <br/>
+    <input type="text" th:field="*{titulo}" id="titulo">
+    <br/>
+    <br/>
+
+    <label for="filtrarStatus">Filtrar por Conclusão?</label>
+    <input type="hidden" value="false">
+    <input type="checkbox" th:field="*{filtrarStatus}" id="filtrarStatus" value="true">
+    <br/>
+    <label>
+        <input type="radio" th:field="*{status}" value="true">
+        Concluídos
+    </label>
+    <br/>
+    <label>
+        <input type="radio" th:field="*{status}" value="false">
+        Não Concluídos
+    </label>
+    <br/>
+
+    <label for="prazo">Filtrar por prazo limite?</label>
+    <input type="hidden" value="false">
+    <input type="checkbox" th:field="*{prazoBool}" id="prazoBool" value="true">
+    <br/>
+    <input type="date" th:field="*{prazo}" id="prazo">
+    <br/>
+    <br/>
+    <input type="submit" value="Aplicar filtro">
+    <br/>
+</form>
+<br/>
+</body>
+</html>
